@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og"
 import type { NextRequest } from "next/server"
+import { readFile } from "fs/promises"
 
-export const runtime = "edge"
+export const runtime = "nodejs"
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,8 +10,14 @@ export async function GET(request: NextRequest) {
     const title = searchParams.get("title") || "Ozark Natural Steak Co."
     const description =
       searchParams.get("description") ||
-      "Premium American Wagyu beef raised with care and tradition by the Smith family in the Ozarks."
+      "Raised with care and tradition by the Smith family in the Ozarks."
     const page = searchParams.get("page") || "home"
+
+    // Load images
+    const [logoData, backgroundData] = await Promise.all([
+      readFile(new URL("../../../public/Ozark_Natural_Steak_Co_Logo_no_Background.png", import.meta.url)),
+      readFile(new URL("../../../public/Sunrise.jpg", import.meta.url)),
+    ])
 
     return new ImageResponse(
       <div
@@ -21,7 +28,7 @@ export async function GET(request: NextRequest) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage: "url('https://ozarknaturalsteak.com/Sunrise.jpg')",
+          backgroundImage: `url(data:image/jpeg;base64,${backgroundData.toString('base64')})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
@@ -35,83 +42,65 @@ export async function GET(request: NextRequest) {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
           }}
         />
 
-        {/* Logo overlay */}
-        <div
+        {/* Company logo - top left */}
+        <img
+          src={`data:image/png;base64,${logoData.toString('base64')}`}
+          alt="Ozark Natural Steak Co."
           style={{
             position: "absolute",
-            top: "40px",
-            left: "40px",
+            top: "30px",
+            left: "30px",
             width: "120px",
             height: "120px",
-            backgroundImage: "url('https://ozarknaturalsteak.com/Ozark_Natural_Steak_Co_Logo_no_Background.png')",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            objectFit: "contain",
           }}
         />
 
-        {/* Logo area - text version as fallback */}
+        {/* Main content */}
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            marginBottom: "40px",
+            justifyContent: "center",
+            maxWidth: "900px",
+            padding: "0 40px",
             position: "relative",
             zIndex: 1,
           }}
         >
+          {/* Title */}
           <div
             style={{
-              fontSize: "32px",
+              fontSize: page === "home" ? "56px" : "44px",
               fontWeight: "bold",
-              color: "#C3AA81",
+              color: "#FFFFFF",
               textAlign: "center",
-              letterSpacing: "2px",
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
+              lineHeight: 1.1,
+              marginBottom: "24px",
+              textShadow: "3px 3px 6px rgba(0, 0, 0, 0.9)",
             }}
           >
-            OZARK NATURAL STEAK CO.
+            {title}
           </div>
-        </div>
 
-        {/* Title */}
-        <div
-          style={{
-            fontSize: page === "home" ? "64px" : "48px",
-            fontWeight: "bold",
-            color: "#FFFFFF",
-            textAlign: "center",
-            maxWidth: "900px",
-            lineHeight: 1.2,
-            marginBottom: "20px",
-            padding: "0 40px",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
-          {title}
-        </div>
-
-        {/* Description */}
-        <div
-          style={{
-            fontSize: "28px",
-            color: "#D7C097",
-            textAlign: "center",
-            maxWidth: "800px",
-            lineHeight: 1.4,
-            padding: "0 40px",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
-          {description}
+          {/* Description */}
+          <div
+            style={{
+              fontSize: "24px",
+              color: "#D7C097",
+              textAlign: "center",
+              lineHeight: 1.3,
+              maxWidth: "750px",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)",
+            }}
+          >
+            {description}
+          </div>
         </div>
 
         {/* Bottom accent */}

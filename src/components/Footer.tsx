@@ -26,8 +26,10 @@ export function Footer() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12 flex-1">
             {/* Company Info */}
             <div className="space-y-4">
-              <h3 className="font-bold text-white text-xl">
-                Premium Wagyu Beef
+              <h3 className="border-luxury-gold border-b-2 font-bold text-white text-xl">
+                <span className="text-white">Ozark</span>{" "}
+                <span className="text-white">Natural</span>{" "}
+                <span className="text-white">Steak Co.</span>
               </h3>
               <p className="text-gray-300 text-sm leading-relaxed">
                 Premium American Wagyu beef raised with care and tradition by the
