@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     // Load images
     const [logoData, backgroundData] = await Promise.all([
       readFile(new URL("../../../public/Ozark_Natural_Steak_Co_Logo_no_Background.png", import.meta.url)),
-      readFile(new URL("../../../public/Sunrise.jpg", import.meta.url)),
+      readFile(new URL("../../../public/Hay_Sunrise_Cattle (1).jpg", import.meta.url)),
     ])
 
     return new ImageResponse(
@@ -25,7 +25,6 @@ export async function GET(request: NextRequest) {
           height: "100%",
           width: "100%",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           backgroundImage: `url(data:image/jpeg;base64,${backgroundData.toString('base64')})`,
@@ -34,7 +33,6 @@ export async function GET(request: NextRequest) {
           position: "relative",
         }}
       >
-        {/* Dark overlay for better text readability */}
         <div
           style={{
             position: "absolute",
@@ -42,66 +40,22 @@ export async function GET(request: NextRequest) {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
           }}
         />
 
-        {/* Company logo - top left */}
+        {/* Centered Company Logo - Much Bigger */}
         <img
           src={`data:image/png;base64,${logoData.toString('base64')}`}
           alt="Ozark Natural Steak Co."
           style={{
-            position: "absolute",
-            top: "30px",
-            left: "30px",
-            width: "120px",
-            height: "120px",
+            width: "600px",
+            height: "600px",
             objectFit: "contain",
-          }}
-        />
-
-        {/* Main content */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            maxWidth: "900px",
-            padding: "0 40px",
             position: "relative",
             zIndex: 1,
           }}
-        >
-          {/* Title */}
-          <div
-            style={{
-              fontSize: page === "home" ? "56px" : "44px",
-              fontWeight: "bold",
-              color: "#FFFFFF",
-              textAlign: "center",
-              lineHeight: 1.1,
-              marginBottom: "24px",
-              textShadow: "3px 3px 6px rgba(0, 0, 0, 0.9)",
-            }}
-          >
-            {title}
-          </div>
-
-          {/* Description */}
-          <div
-            style={{
-              fontSize: "24px",
-              color: "#D7C097",
-              textAlign: "center",
-              lineHeight: 1.3,
-              maxWidth: "750px",
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)",
-            }}
-          >
-            {description}
-          </div>
-        </div>
+        />
 
         {/* Bottom accent */}
         <div
