@@ -6,36 +6,44 @@ import { motion } from "motion/react"
 export function LocalTestimonialsSection() {
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      location: "Fayetteville, AR",
-      role: "Local Customer",
-      text: "The quality of Ozark Natural Steak Co. beef is unmatched. Every time I cook their Wagyu, my family asks what I did differently. It's become our go-to for special occasions.",
+      name: "Aaron Finch",
+      location: "Arkansas",
+      role: "Customer",
+      text: "This beef outshines anything I've purchased before with richer flavor, better marbling, and unmatched quality in every cut.",
       rating: 5,
-      image: "👩‍🍳",
+      image: "👨",
     },
     {
-      name: "Chef Marcus Thompson",
-      location: "Bentonville, AR",
-      role: "Restaurant Owner",
-      text: "As a chef, I demand the best ingredients for my customers. Ozark Natural Steak Co. consistently delivers exceptional quality that elevates every dish we create.",
+      name: "Jamie Martin",
+      location: "Arkansas",
+      role: "Customer",
+      text: "The most delicious steak. Cut with a fork tender and every bite melts in your mouth.",
       rating: 5,
-      image: "👨‍🍳",
+      image: "👨",
     },
     {
-      name: "Mike & Lisa Chen",
-      location: "Rogers, AR",
-      role: "Farmers Market Customers",
-      text: "We've been buying from the Smith family for three years now. Their commitment to quality and the personal connection makes all the difference. Best beef in Arkansas!",
+      name: "Jenna Gourd",
+      location: "Arkansas",
+      role: "Customer",
+      text: "Flavorful, tender, best steak around.",
       rating: 5,
-      image: "👫",
+      image: "👩",
     },
     {
-      name: "Dr. Amanda Rodriguez",
-      location: "Springdale, AR",
-      role: "Local Physician",
-      text: "Knowing where my food comes from and how it's raised is important to me. Ozark Natural Steak Co. gives me confidence in both the quality and the ethical practices.",
+      name: "Carol Gulley",
+      location: "Arkansas",
+      role: "Customer",
+      text: "The Denver Steak is the best I've ever had. Very juicy with great flavor.",
       rating: 5,
-      image: "👩‍⚕️",
+      image: "👩",
+    },
+    {
+      name: "Dale Andrews",
+      location: "Arkansas",
+      role: "Customer",
+      text: "It's everything I want in a steak!",
+      rating: 5,
+      image: "👨",
     },
   ]
 
@@ -55,7 +63,7 @@ export function LocalTestimonialsSection() {
         </p>
       </motion.div>
 
-      <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         {testimonials.map((testimonial, index) => (
           <motion.div
             className="rounded-2xl bg-luxury-charcoal/30 p-8"
@@ -107,14 +115,14 @@ export function LocalTestimonialsSection() {
             markets or contact us to learn more about our premium American Wagyu
             beef.
           </p>
-        <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <button className="cursor-pointer rounded-lg bg-luxury-gold px-6 py-3 font-medium text-luxury-black transition-colors hover:bg-luxury-champagne">
-            Find Us at Markets
-          </button>
-          <button className="cursor-pointer rounded-lg border border-luxury-gold px-6 py-3 font-medium text-luxury-gold transition-colors hover:bg-luxury-gold hover:text-white">
-            Contact Us
-          </button>
-        </div>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <button className="cursor-pointer rounded-lg bg-luxury-gold px-6 py-3 font-medium text-luxury-black transition-colors hover:bg-luxury-champagne">
+              Find Us at Markets
+            </button>
+            <button className="cursor-pointer rounded-lg border border-luxury-gold px-6 py-3 font-medium text-luxury-gold transition-colors hover:bg-luxury-gold hover:text-white">
+              Contact Us
+            </button>
+          </div>
         </div>
       </motion.div>
     </section>

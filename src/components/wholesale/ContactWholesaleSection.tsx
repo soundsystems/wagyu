@@ -14,7 +14,7 @@ import {
 
 export function ContactWholesaleSection() {
   return (
-    <section aria-labelledby="contact-heading" className="py-20" id="contact-form">
+    <section aria-labelledby="contact-heading" className="py-20">
       <div className="grid items-center gap-8 md:grid-cols-2 md:gap-16">
         <motion.div
           initial={{ opacity: 0, x: -30 }}

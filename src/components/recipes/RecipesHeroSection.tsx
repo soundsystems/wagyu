@@ -15,10 +15,10 @@ export function RecipesHeroSection() {
           priority
           src="/Smith_Family_Dinner.jpg"
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-4xl px-8 text-center">
         <motion.div
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 30 }}
@@ -27,11 +27,11 @@ export function RecipesHeroSection() {
           <Badge className="mb-6 bg-luxury-gold px-6 py-2 text-luxury-black">
             Recipe Collection
           </Badge>
-          <h1 className="mb-6 text-4xl leading-tight tracking-wide md:text-6xl">
+          <h1 className="mb-6 text-3xl leading-tight tracking-wide md:text-6xl">
             From Our Kitchen <br />
             <span className="text-luxury-gold">to Yours</span>
           </h1>
-          <p className="mx-auto mb-8 max-w-6xl font-sans text-sm text-white/90 leading-relaxed md:text-lg lg:text-xl">
+          <p className="mx-auto mb-8 max-w-2xl font-sans text-base text-white/90 leading-relaxed md:text-lg lg:text-xl">
             Discover the secrets behind cooking premium American Wagyu beef with
             recipes, techniques, and tips from the Smith family kitchen.
           </p>

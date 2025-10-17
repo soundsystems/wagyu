@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "./ui/button"
@@ -35,11 +35,14 @@ export function HeroBanner() {
 
       {/* Hero Content */}
       <div className="relative z-10 mx-auto px-2 pt-20 text-center md:px-6 md:pt-32">
-        <motion.div
-          animate={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.4 }}
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key="hero-content"
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: -50 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
           <h1
             className="mb-3 px-1 text-2xl text-white leading-tight tracking-wide md:mb-6 md:text-6xl lg:text-7xl"
             id="hero-heading"
@@ -50,42 +53,54 @@ export function HeroBanner() {
           >
             Premium American Wagyu <br /> Raised Here in the Ozarks
           </h1>
-          <p
-            aria-describedby="hero-heading"
-            className="mx-auto mb-6 max-w-5xl text-balance px-4 text-center font-semibold font-serif text-luxury-burgundy text-sm leading-relaxed md:mb-12 md:px-0 md:text-base lg:whitespace-nowrap lg:text-lg"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: -20 }}
+            transition={{ 
+              duration: 0.8, 
+              ease: "easeOut",
+              delay: 0.2
+            }}  
+            className="mx-auto mb-6 w-3/4 md:mb-12 md:w-full lg:w-3/4"
           >
-            Buttery flavor, tender texture, and clean, slow-aged beef, crafted
-            by a family who puts animal well-being first.
-          </p>
+            <motion.div
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="mx-auto rounded-lg border border-[#27271B] bg-[#C3AA81] px-2 py-2 md:px-4 md:py-4 shadow-2xl backdrop-blur-sm"
+            >
+              <p
+                aria-describedby="hero-heading"
+                className="text-center text-xs font-sans font-semibold text-luxury-black md:text-base lg:text-lg"
+              >
+                Buttery flavor, tender texture, and perfectly dry-aged beef cuts<br className="block max-[394px]:block min-[394px]:hidden" /> from our family to yours.
+              </p>
+            </motion.div>
+          </motion.div>
 
           {/* Mobile: Stacked buttons, Desktop: Side by side */}
           <nav
             aria-label="Primary navigation"
             className="mb-8 flex flex-col items-center justify-center gap-4 px-4 sm:flex-row md:mb-4 md:gap-6"
           >
-            <Button
+            <Link 
+              href="/our-ranch"
               aria-describedby="meet-family-description"
-              asChild
-              className="min-h-[48px] w-full cursor-pointer px-8 py-3 text-base text-luxury-black sm:w-auto md:px-12 md:py-4 md:text-lg"
-              size="lg"
-              variant="meet-family"
+              className="inline-block min-h-[48px] w-auto cursor-pointer rounded-lg border border-[#27271B] bg-[#27271B] px-8 py-3 text-base font-semibold text-white text-shadow-sm transition-all duration-300 hover:bg-[#27271B]/80 hover:font-bold hover:scale-105 sm:w-auto md:px-12 md:py-4 md:text-lg"
             >
-              <Link href="/our-ranch">Meet the Family</Link>
-            </Button>
+              Learn More
+            </Link>
             <span className="sr-only" id="meet-family-description">
               Learn about the Smith family and their ranching practices
             </span>
 
             <Dialog>
               <DialogTrigger asChild>
-                <Button
+                <button
                   aria-describedby="shop-steaks-description"
-                  className="min-h-[48px] w-full cursor-pointer px-8 py-3 text-base text-shadow-sm text-white sm:w-auto md:px-12 md:py-4 md:text-lg"
-                  size="lg"
-                  variant="luxury-burgundy"
+                  className="min-h-[48px] w-auto cursor-pointer rounded-lg bg-luxury-burgundy px-8 py-3 text-base font-semibold text-white text-shadow-sm transition-all duration-300 hover:font-bold hover:scale-105 hover:[filter:brightness(1.4)] sm:w-auto md:px-12 md:py-4 md:text-lg"
                 >
                   Shop Steaks
-                </Button>
+                </button>
               </DialogTrigger>
               <DialogContent
                 aria-describedby="shop-dialog-description"
@@ -118,11 +133,11 @@ export function HeroBanner() {
 
           {/* Logo */}
           <motion.div
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, y: 0 }}
             aria-label="Company logo"
             className="md:-mt-12 -mt-6 flex justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            initial={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
             <Image
               alt="Ozark Natural Steak Co. company logo featuring elegant typography and branding"
@@ -133,7 +148,8 @@ export function HeroBanner() {
               width={400}
             />
           </motion.div>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   )

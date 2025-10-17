@@ -34,8 +34,7 @@ export function FamilyIntroduction() {
                 className="mb-8 font-bold text-3xl text-white"
                 id="family-intro-heading"
               >
-                The Family <br className="md:hidden" />
-                Behind the Beef
+                The Family Behind the Beef
               </h2>
             </header>
 
@@ -56,8 +55,8 @@ export function FamilyIntroduction() {
                 decision is made with the animals&apos; well-being in mind.
               </p>
               <blockquote className="border-luxury-gold border-l-4 pl-4 text-luxury-warm-beige italic">
-                &ldquo;Grateful for the land, the cattle, and the families we
-                serve.&rdquo;
+                &ldquo; We are extemely grateful for the land, the cattle, and
+                the families we serve.&rdquo;
               </blockquote>
             </div>
 
@@ -65,11 +64,13 @@ export function FamilyIntroduction() {
               <Button
                 aria-describedby="family-story-description"
                 asChild
-                className="cursor-pointer px-8 hover:!text-white no-underline"
+                className="hover:!text-white cursor-pointer px-8 no-underline"
                 size="lg"
                 variant="luxury-outline"
               >
-                <Link href="/our-ranch" className="no-underline">Our Story</Link>
+                <Link className="no-underline" href="/our-ranch">
+                  Our Story
+                </Link>
               </Button>
               <span className="sr-only" id="family-story-description">
                 Learn more about the Smith family&apos;s ranching journey and

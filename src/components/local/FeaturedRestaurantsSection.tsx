@@ -65,7 +65,7 @@ export function FeaturedRestaurantsSection() {
                     {Array.from({ length: STAR_RATING_COUNT }, (_, i) => (
                       <Star
                         className="h-5 w-5 fill-luxury-gold text-luxury-gold"
-                        key={i}
+                        key={`star-${restaurant.name}-${i}`}
                       />
                     ))}
                   </div>
@@ -82,21 +82,26 @@ export function FeaturedRestaurantsSection() {
                   </p>
                 </div>
 
-                <blockquote className="mb-6 border-luxury-gold border-l-4 pl-4">
+                {/* <blockquote className="mb-6 border-luxury-gold border-l-4 pl-4">
                   <p className="mb-2 font-sans text-gray-300 italic">
                     &quot;{restaurant.chefQuote}&quot;
                   </p>
                   <cite className="text-luxury-gold">— {restaurant.chef}</cite>
-                </blockquote>
+                </blockquote> */}
 
                 <Button
+                  asChild
                   className="cursor-pointer border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white"
-                  onClick={() =>
-                    window.open("https://www.coniferbentonville.com/", "_blank")
-                  }
                   variant="luxury-outline"
                 >
-                  Visit Restaurant
+                  <a
+                    aria-label={`Visit ${restaurant.name} website`}
+                    href={restaurant.link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Visit Restaurant
+                  </a>
                 </Button>
               </div>
             </div>

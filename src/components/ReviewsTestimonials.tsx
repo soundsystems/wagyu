@@ -7,27 +7,33 @@ import { useEffect, useState } from "react"
 const reviews = [
   {
     id: 1,
-    text: "The quality exceeded our expectations. You can taste the care that goes into raising these cattle. Our family dinner was unforgettable.",
-    author: "Sarah M.",
-    location: "Fayetteville, AR",
+    text: "This beef outshines anything I've purchased before with richer flavor, better marbling, and unmatched quality in every cut.",
+    author: "Aaron Finch",
+    location: "Arkansas",
   },
   {
     id: 2,
-    text: "As local restaurant owners, we've tried many suppliers. Ozark Natural consistently delivers premium quality with a personal touch.",
-    author: "Chef Michael R.",
-    location: "Bentonville, AR",
+    text: "The most delicious steak. Cut with a fork tender and every bite melts in your mouth.",
+    author: "Jamie Martin",
+    location: "Arkansas",
   },
   {
     id: 3,
-    text: "Ordered for our anniversary and it was restaurant-quality at home. The buttery flavor and tenderness were exactly as promised.",
-    author: "Jennifer & David L.",
-    location: "Rogers, AR",
+    text: "Flavorful, tender, best steak around.",
+    author: "Jenna Gourd",
+    location: "Arkansas",
   },
   {
     id: 4,
-    text: "Supporting a local family business that truly cares about their craft. The difference in quality is remarkable—you won't go back to store-bought.",
-    author: "The Johnson Family",
-    location: "Springdale, AR",
+    text: "The Denver Steak is the best I've ever had. Very juicy with great flavor.",
+    author: "Carol Gulley",
+    location: "Arkansas",
+  },
+  {
+    id: 5,
+    text: "It's everything I want in a steak!",
+    author: "Dale Andrews",
+    location: "Arkansas",
   },
 ]
 
@@ -57,14 +63,14 @@ export function ReviewsTestimonials() {
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            More Than Expected
+            Exceeding Expectations
           </motion.h2>
         </header>
 
-        {/* Family Motto */}
+        {/* Family Motto
         <motion.aside
           aria-label="Family motto"
-          className="mb-16"
+          className="mb-8"
           initial={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
@@ -72,13 +78,13 @@ export function ReviewsTestimonials() {
         >
           <Quote
             aria-hidden="true"
-            className="mx-auto mb-4 h-8 w-8 text-luxury-gold"
+            className="mx-auto h-8 w-8 text-luxury-gold"
           />
-          <blockquote className="mb-4 font-sans text-2xl text-luxury-gold italic">
+          <blockquote className="mb-4 font-sans text-base text-luxury-gold italic leading-relaxed md:text-lg lg:text-2xl">
             &ldquo;Giving people more than they expect.&rdquo;
           </blockquote>
           <p className="font-sans text-gray-400">— Family Motto</p>
-        </motion.aside>
+        </motion.aside> */}
 
         <div className="relative mx-auto max-w-4xl">
           <div className="overflow-hidden">
@@ -137,7 +143,7 @@ export function ReviewsTestimonials() {
               <motion.button
                 aria-current={currentIndex === index ? "true" : "false"}
                 aria-label={`Go to testimonial ${index + 1}`}
-                className={`h-1 w-1 rounded-full cursor-pointer transition-all duration-300 ${
+                className={`h-1 w-1 cursor-pointer rounded-full transition-all duration-300 ${
                   currentIndex === index
                     ? "scale-125 bg-luxury-gold"
                     : "bg-gray-600 hover:bg-gray-500"

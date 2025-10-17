@@ -53,10 +53,10 @@ export default function RecipesPage() {
 
       <div className="mx-auto max-w-[1440px] px-20">
         <CookingEducationSection />
-        <RecipeCategoriesSection />
         <FeaturedRecipesSection />
+        {/* <RecipeCategoriesSection /> */}
         <CookingTipsSection />
-        <FamilyRecipesSection />
+        {/* <FamilyRecipesSection /> */}
       </div>
     </div>
   )

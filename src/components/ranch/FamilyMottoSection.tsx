@@ -14,7 +14,7 @@ export function FamilyMottoSection() {
         whileInView={{ opacity: 1, y: 0 }}
       >
         <Quote className="mx-auto mb-8 h-12 w-12 text-luxury-gold" />
-        <blockquote className="mb-8 text-3xl text-luxury-gold italic leading-relaxed md:text-4xl">
+        <blockquote className="mb-8 text-luxury-gold text-xl italic leading-relaxed md:text-2xl lg:text-4xl">
           &ldquo;Giving people more than they expect.&rdquo;
         </blockquote>
         <p className="font-sans text-gray-400 text-xl">
@@ -28,7 +28,7 @@ export function FamilyMottoSection() {
           viewport={{ once: true }}
           whileInView={{ opacity: 1, y: 0 }}
         >
-          <p className="font-sans text-lg text-white/90 leading-relaxed">
+          <p className="font-sans text-base text-white/90 leading-relaxed md:text-lg">
             This simple yet powerful motto drives every decision we make on our
             ranch. From the care we give our cattle to the relationships we
             build with our customers, we&apos;re committed to exceeding

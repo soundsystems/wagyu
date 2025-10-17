@@ -14,6 +14,7 @@ export const featuredRestaurants = [
     image: "/Conifer_Mathew.jpg",
     partnership: "New in 2025",
     specialty: "Prime Cuts",
+    link: "https://www.coniferbentonville.com/",
   },
 ]
 

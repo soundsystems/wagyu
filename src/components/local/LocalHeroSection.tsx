@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react"
 import Image from "next/image"
-import { Badge } from "../ui/badge"
 
 export function LocalHeroSection() {
   return (
@@ -15,7 +14,7 @@ export function LocalHeroSection() {
           priority
           src="/WhyFayetteville-InLine-Landscape.jpg"
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-8 text-center">
@@ -24,14 +23,14 @@ export function LocalHeroSection() {
           initial={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <Badge className="mb-6 bg-luxury-gold px-6 py-2 text-luxury-black">
+          {/* <Badge className="mb-6 bg-luxury-gold px-6 py-2 text-luxury-black">
             Supporting Our Local Community
-          </Badge>
+          </Badge> */}
           <h1 className="mb-6 text-5xl leading-tight tracking-wide md:text-6xl">
             Rooted in <br />
             <span className="text-luxury-gold">Northwest Arkansas</span>
           </h1>
-          <p className="mx-auto mb-8 max-w-2xl font-sans text-white/90 text-base md:text-lg lg:text-xl leading-relaxed">
+          <p className="mx-auto mb-8 max-w-2xl font-sans text-base text-white/90 leading-relaxed md:text-lg lg:text-xl">
             We&apos;re proud to serve our local community, supporting regional
             restaurants, markets, and families with premium American Wagyu beef.
           </p>

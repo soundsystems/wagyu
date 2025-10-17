@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { FeaturedRestaurantsSection } from "@/components/local/FeaturedRestaurantsSection"
-import { FarmersMarketSection } from "@/components/local/FindUsLocallySection"
 import { LocalHeroSection } from "@/components/local/LocalHeroSection"
 import { LocalPartnersSection } from "@/components/local/LocalPartnersSection"
 

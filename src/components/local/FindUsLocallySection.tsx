@@ -47,7 +47,7 @@ export function FarmersMarketSection() {
         </p>
       </motion.div>
 
-      <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {locations.map((location, index) => (
           <motion.div
             className="rounded-2xl bg-luxury-charcoal/30 p-6"

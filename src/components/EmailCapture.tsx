@@ -20,10 +20,10 @@ export function EmailCapture() {
 
   return (
     <section aria-labelledby={headingId} className="bg-luxury-charcoal py-16">
-      <div className="mx-auto max-w-[1440px] px-4 text-center md:px-20">
+      <div className="mx-auto max-w-[1440px] px-2 text-center md:px-20">
         <header>
           <motion.h2
-            className="mb-4 font-bold text-2xl text-white"
+            className="mb-2 font-bold text-xl leading-tight md:text-2xl text-white"
             id={headingId}
             initial={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
@@ -33,14 +33,13 @@ export function EmailCapture() {
             Want first dibs on new cuts?
           </motion.h2>
           <motion.p
-            className="mx-auto mb-12 max-w-xl font-sans text-gray-300 text-sm md:text-base"
+            className="mx-auto mb-12 max-w-7xl font-sans text-gray-300 text-sm md:text-base text-pretty"
             initial={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            Join our family updates to hear about new cuts, seasonal
-            availability, and exclusive offers before anyone else.
+            Join to hear about new drops, seasonal availability, and exclusive offers before anyone else.
           </motion.p>
         </header>
 

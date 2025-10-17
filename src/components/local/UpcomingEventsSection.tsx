@@ -22,7 +22,7 @@ export function UpcomingEventsSection() {
         </p>
       </motion.div>
 
-      <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         {upcomingEvents.map((event, index) => (
           <motion.div
             className="rounded-2xl bg-luxury-charcoal/30 p-8"

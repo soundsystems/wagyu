@@ -1,4 +1,5 @@
 import { ChefHat, Clock, Flame, Thermometer } from "lucide-react"
+import { familyRecipes } from "@/lib/family-recipes"
 
 export const cookingTips = [
   {
@@ -58,33 +59,14 @@ export const recipeCategories = [
   },
 ]
 
-export const featuredRecipes = [
-  {
-    title: "Perfect Wagyu Ribeye",
-    description:
-      "Learn the art of cooking our signature cut to perfection with this step-by-step guide.",
-    cookTime: "15 mins",
-    difficulty: "Easy",
-    serves: "2-4 people",
-    image: "/Ribeye_generated.png",
-  },
-  {
-    title: "Family Pot Roast",
-    description:
-      "A Smith family recipe passed down through generations, slow-cooked with Ozark vegetables.",
-    cookTime: "3 hours",
-    difficulty: "Medium",
-    serves: "6-8 people",
-    image: "/Smith_Family_Dinner.jpg",
-  },
-  {
-    title: "Wagyu Burger Perfection",
-    description:
-      "Elevate your burger game with our premium ground beef and secret family seasoning blend.",
-    cookTime: "20 mins",
-    difficulty: "Easy",
-    serves: "4 people",
-    image: "/NY_Strip_Generated.png",
-  },
-]
+// Export featured recipes from family-recipes data
+export const featuredRecipes = familyRecipes.map((recipe) => ({
+  title: recipe.title,
+  description: recipe.description,
+  cookTime: recipe.cookTime,
+  difficulty: recipe.difficulty,
+  serves: recipe.serves,
+  image: recipe.heroImage,
+  slug: recipe.slug,
+}))
 

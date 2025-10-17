@@ -5,25 +5,25 @@ import { motion } from "motion/react"
 export function PartnershipProcessSection() {
   const steps = [
     {
-      number: "1",
+      number: "01",
       title: "Initial Consultation",
       description:
         "We'll discuss your needs, volume requirements, and quality specifications.",
     },
     {
-      number: "2",
+      number: "02",
       title: "Product Sampling",
       description:
         "Experience our American Wagyu beef with samples tailored to your menu.",
     },
     {
-      number: "3",
+      number: "03",
       title: "Partnership Agreement",
       description:
         "Establish terms, delivery schedules, and ongoing support structure.",
     },
     {
-      number: "4",
+      number: "04",
       title: "Ongoing Partnership",
       description:
         "Regular deliveries, quality assurance, and continued culinary support.",

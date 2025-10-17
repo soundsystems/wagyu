@@ -130,7 +130,7 @@
     @apply bg-background text-foreground;
   }
 
-  /* PWA-specific styles */
+  /* Mobile-optimized styles for native app feel */
   html {
     /* Prevent zoom on form inputs on iOS */
     -webkit-text-size-adjust: 100%;
@@ -145,10 +145,7 @@
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
-  }
-
-  /* Prevent pull-to-refresh on mobile */
-  body {
+    /* Prevent pull-to-refresh on mobile */
     overscroll-behavior-y: contain;
   }
 
@@ -255,8 +252,8 @@
     color: #ffffff !important;
   }
 
-  /* PWA utilities */
-  .pwa-container {
+  /* Mobile app-like container utilities */
+  .mobile-container {
     /* Ensure content doesn't get hidden behind mobile UI */
     min-height: 100vh;
     min-height: 100dvh; /* Dynamic viewport height */

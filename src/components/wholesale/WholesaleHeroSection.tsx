@@ -6,16 +6,6 @@ import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 
 export function WholesaleHeroSection() {
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact-form")
-    if (contactSection) {
-      contactSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
-  }
-
   return (
     <section className="relative flex h-[70vh] items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -25,10 +15,8 @@ export function WholesaleHeroSection() {
           fill
           priority
           src="/Waygu_Cattle_Side_by_Side.png"
-          sizes="100vw"
-          quality={85}
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-8 text-center">
@@ -44,7 +32,7 @@ export function WholesaleHeroSection() {
             Partner With <br />
             <span className="text-luxury-gold">Premium Quality</span>
           </h1>
-          <p className="mx-auto mb-8 max-w-5xl font-sans text-sm text-white/90 leading-relaxed md:text-lg lg:text-xl">
+          <p className="mx-auto mb-8 max-w-2xl font-sans text-base text-white/90 leading-relaxed md:text-lg lg:text-xl">
             Join restaurants, retailers, and culinary professionals who trust
             Ozark Natural Steak Co. for consistently exceptional American Wagyu
             beef.
@@ -55,12 +43,14 @@ export function WholesaleHeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <Button
-              className="px-8 py-3 font-semibold text-lg"
-              onClick={scrollToContact}
-              size="lg"
-              variant="luxury"
+              className="bg-luxury-gold text-luxury-black hover:bg-luxury-champagne transition-colors duration-300 px-8 py-3 text-lg font-semibold cursor-pointer"
+              onClick={() => {
+                document.getElementById('contact-form')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                })
+              }}
             >
-              Become a Partner
+              Get Started
             </Button>
           </motion.div>
         </motion.div>
@@ -68,3 +58,4 @@ export function WholesaleHeroSection() {
     </section>
   )
 }
+

@@ -1,6 +1,6 @@
+import { readFile } from "fs/promises"
 import { ImageResponse } from "next/og"
 import type { NextRequest } from "next/server"
-import { readFile } from "fs/promises"
 
 export const runtime = "nodejs"
 
@@ -15,8 +15,15 @@ export async function GET(request: NextRequest) {
 
     // Load images
     const [logoData, backgroundData] = await Promise.all([
-      readFile(new URL("../../../public/Ozark_Natural_Steak_Co_Logo_no_Background.png", import.meta.url)),
-      readFile(new URL("../../../public/Hay_Sunrise_Cattle (1).jpg", import.meta.url)),
+      readFile(
+        new URL(
+          "../../../public/Ozark_Natural_Steak_Co_Logo_no_Background.png",
+          import.meta.url
+        )
+      ),
+      readFile(
+        new URL("../../../public/Hay_Sunrise_Cattle (1).jpg", import.meta.url)
+      ),
     ])
 
     return new ImageResponse(
@@ -27,7 +34,7 @@ export async function GET(request: NextRequest) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage: `url(data:image/jpeg;base64,${backgroundData.toString('base64')})`,
+          backgroundImage: `url(data:image/jpeg;base64,${backgroundData.toString("base64")})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
@@ -46,8 +53,8 @@ export async function GET(request: NextRequest) {
 
         {/* Centered Company Logo - Much Bigger */}
         <img
-          src={`data:image/png;base64,${logoData.toString('base64')}`}
           alt="Ozark Natural Steak Co."
+          src={`data:image/png;base64,${logoData.toString("base64")}`}
           style={{
             width: "600px",
             height: "600px",

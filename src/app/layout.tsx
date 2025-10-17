@@ -4,8 +4,6 @@ import "./globals.css"
 import { Footer } from "@/components/Footer"
 import { Navigation } from "@/components/Navigation"
 import { PerformanceOptimizations } from "@/components/PerformanceOptimizations"
-import { PWARegistration } from "@/components/PWARegistration"
-import { PWAInstallPrompt } from "@/components/PWAInstallPrompt"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -102,21 +100,6 @@ export const metadata: Metadata = {
   },
   category: "food",
   classification: "Premium Beef Producer",
-  icons: {
-    icon: [
-      { url: "/favicon/favicon.ico" },
-      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [
-      { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    other: [
-      { rel: "android-chrome-192x192", url: "/favicon/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-      { rel: "android-chrome-512x512", url: "/favicon/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
-  },
-  manifest: "/favicon/site.webmanifest",
   other: {
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
@@ -168,7 +151,24 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en">
       <head>
-        <meta content="#27271B" name="theme-color" />
+        <meta
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+          name="viewport"
+        />
+        <meta content="#000000" name="theme-color" />
+        <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+        <link
+          href="/favicon-32x32.png"
+          rel="icon"
+          sizes="32x32"
+          type="image/png"
+        />
+        <link
+          href="/favicon-16x16.png"
+          rel="icon"
+          sizes="16x16"
+          type="image/png"
+        />
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
           type="application/ld+json"
@@ -177,7 +177,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-luxury-black antialiased`}
       >
-        <PWARegistration />
         <PerformanceOptimizations />
         <a className="skip-link" href="#main-content">
           Skip to main content
@@ -188,7 +187,6 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <PWAInstallPrompt />
         </div>
       </body>
     </html>

@@ -13,17 +13,20 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: CACHE_TTL.ONE_YEAR,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    qualities: [25, 50, 75, 95],
   },
 
   // Enable experimental features for better performance
   experimental: {
     optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
+  },
+
+  // Turbopack configuration (moved from experimental.turbo)
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
       },
     },
   },
@@ -49,19 +52,6 @@ const nextConfig: NextConfig = {
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
-          },
-        ],
-      },
-      {
-        source: "/sw.js",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=0, must-revalidate",
-          },
-          {
-            key: "Service-Worker-Allowed",
-            value: "/",
           },
         ],
       },
@@ -97,24 +87,13 @@ const nextConfig: NextConfig = {
     ]
   },
 
-  // Enable PWA support
-  async rewrites() {
-    return [
-      {
-        source: "/sw.js",
-        destination: "/sw.js",
-      },
-    ]
-  },
-
   // Output configuration
   output: "standalone",
 
   // Enable React strict mode
   reactStrictMode: true,
 
-  // Enable SWC minification
-  swcMinify: true,
+  // SWC minification is enabled by default in Next.js 15+
 
   // Power optimizations
   poweredByHeader: false,

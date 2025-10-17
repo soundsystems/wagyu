@@ -25,11 +25,11 @@ const buttonVariants = cva(
         "luxury-outline":
           "border border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white",
         "meet-family":
-          "bg-meet-family text-luxury-black hover:text-luxury-black [filter:brightness(1.2)] hover:[filter:brightness(1.4)]",
+          "bg-meet-family text-luxury-black [filter:brightness(1.2)] hover:text-luxury-black hover:[filter:brightness(1.4)]",
         "luxury-olive":
           "bg-luxury-olive text-white hover:bg-luxury-burgundy hover:text-white",
         "luxury-burgundy":
-          "bg-luxury-burgundy text-white hover:text-white [filter:brightness(1.2)] hover:[filter:brightness(1.4)]",
+          "bg-luxury-burgundy text-white [filter:brightness(1.2)] hover:text-white hover:[filter:brightness(1.4)]",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

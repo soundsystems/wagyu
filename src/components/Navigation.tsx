@@ -1,7 +1,7 @@
 "use client"
 
 import { ShoppingCart } from "lucide-react"
-import { motion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -14,6 +14,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
+import { WholesaleButton } from "./WholesaleButton"
+
+const SCALE_ACTIVE = 1.05
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -31,39 +34,44 @@ export function Navigation() {
   const isActive = (path: string) => pathname === path
 
   return (
-    <nav
+    <motion.nav
+      animate={{ opacity: 1 }}
       aria-label="Main navigation"
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 md:py-2 ${
         isScrolled
-          ? "border-luxury-gold/20 border-b bg-luxury-black/90 backdrop-blur-sm py-1"
-          : "bg-luxury-black/80 backdrop-blur-sm py-3 md:bg-transparent md:py-2"
+          ? "border-luxury-gold/20 border-b bg-luxury-black/90 py-1 backdrop-blur-sm"
+          : "bg-luxury-black/80 py-3 backdrop-blur-sm md:bg-transparent md:py-2"
       }`}
-      role="navigation"
+      initial={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: "linear" }}
     >
       <div className="mx-auto max-w-[1440px] px-4 md:px-20">
         {/* Mobile Layout */}
-        <motion.div 
-          className="md:hidden"
+        <motion.div
           animate={{
             height: isScrolled ? "auto" : "auto",
-            minHeight: isScrolled ? "36px" : "80px"
+            minHeight: isScrolled ? "36px" : "80px",
+            opacity: 1,
+            y: 0,
           }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          initial={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className="md:hidden"
         >
-          <div className={`flex items-center justify-between ${isScrolled ? 'pt-2 pb-0' : 'py-2'}`}>
+          <div
+            className={`flex items-center justify-between ${isScrolled ? "pt-2 pb-0" : "py-2"}`}
+          >
             {/* Logo Text */}
             <Link
               aria-label="Ozark Natural Steak Co. home page"
               className="flex-shrink-0"
               href="/"
             >
-              <motion.h1 
-                className="border-luxury-gold border-b-2 font-bold text-lg text-white transition-colors hover:text-luxury-gold"
-              >
+              <h1 className="border-luxury-gold border-b-2 font-bold text-lg text-white transition-colors hover:text-luxury-gold">
                 <span className="text-white">Ozark</span>{" "}
                 <span className="text-white">Natural</span>{" "}
                 <span className="text-white">Steak Co.</span>
-              </motion.h1>
+              </h1>
             </Link>
 
             {/* Cart Button */}
@@ -102,183 +110,208 @@ export function Navigation() {
 
           {/* Mobile Navigation Menu */}
           <motion.div
-            aria-label="Mobile navigation menu"
-            className="flex items-center justify-center space-x-3 px-2 pb-2"
-            role="list"
             animate={{
-              height: isScrolled ? 0 : "auto",
               opacity: isScrolled ? 0 : 1,
-              marginBottom: isScrolled ? 0 : "0.5rem"
+              y: isScrolled ? -20 : 0,
+              height: isScrolled ? 0 : "auto",
+              marginBottom: isScrolled ? 0 : "0.5rem",
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
+            aria-label="Mobile navigation menu"
+            className="flex items-center justify-center space-x-2 px-1 pb-2"
+            role="list"
             style={{ overflow: "hidden" }}
           >
-            <motion.div
-              animate={{
-                scale: isActive("/our-ranch") ? 1.05 : 1,
-              }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
-              style={{ willChange: "transform" }}
-            >
-              <Link
-                aria-current={isActive("/our-ranch") ? "page" : undefined}
-                className={`rounded px-2 py-1 text-sm transition-colors duration-150 ${
-                  isActive("/our-ranch")
-                    ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
-                    : "font-medium text-white no-underline hover:text-luxury-gold"
-                }`}
-                href="/our-ranch"
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{
+                  scale: isActive("/our-ranch") ? SCALE_ACTIVE : 1,
+                  opacity: 1,
+                  y: 0,
+                }}
+                exit={{ opacity: 0, y: -5, scale: 0.95 }}
+                initial={{ opacity: 0, y: 5, scale: 0.95 }}
+                key={`mobile-our-ranch-${isActive("/our-ranch")}`}
+                style={{ willChange: "transform" }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
               >
-                Our Ranch
-              </Link>
-            </motion.div>
-            <motion.div
-              animate={{
-                scale: isActive("/recipes") ? 1.05 : 1,
-              }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
-              style={{ willChange: "transform" }}
-            >
-              <Link
-                aria-current={isActive("/recipes") ? "page" : undefined}
-                className={`rounded px-2 py-1 text-sm transition-colors duration-150 ${
-                  isActive("/recipes")
-                    ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
-                    : "font-medium text-white no-underline hover:text-luxury-gold"
-                }`}
-                href="/recipes"
+                <Link
+                  aria-current={isActive("/our-ranch") ? "page" : undefined}
+                  className={`rounded px-2 py-1 text-sm transition-colors duration-150 ${
+                    isActive("/our-ranch")
+                      ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
+                      : "font-medium text-white no-underline hover:text-luxury-gold"
+                  }`}
+                  href="/our-ranch"
+                >
+                  Ranch
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{
+                  scale: isActive("/recipes") ? SCALE_ACTIVE : 1,
+                  opacity: 1,
+                  y: 0,
+                }}
+                exit={{ opacity: 0, y: -5, scale: 0.95 }}
+                initial={{ opacity: 0, y: 5, scale: 0.95 }}
+                key={`mobile-recipes-${isActive("/recipes")}`}
+                style={{ willChange: "transform" }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
               >
-                Recipes
-              </Link>
-            </motion.div>
-            <motion.div
-              animate={{
-                scale: isActive("/wholesale") ? 1.05 : 1,
-              }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
-              style={{ willChange: "transform" }}
-            >
-              <Link
-                aria-current={isActive("/wholesale") ? "page" : undefined}
-                className={`rounded px-2 py-1 text-sm transition-colors duration-150 ${
-                  isActive("/wholesale")
-                    ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
-                    : "font-medium text-white no-underline hover:text-luxury-gold"
-                }`}
-                href="/wholesale"
+                <Link
+                  aria-current={isActive("/recipes") ? "page" : undefined}
+                  className={`rounded px-2 py-1 text-sm transition-colors duration-150 ${
+                    isActive("/recipes")
+                      ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
+                      : "font-medium text-white no-underline hover:text-luxury-gold"
+                  }`}
+                  href="/recipes"
+                >
+                  Recipes
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{
+                  scale: isActive("/local") ? SCALE_ACTIVE : 1,
+                  opacity: 1,
+                  y: 0,
+                }}
+                exit={{ opacity: 0, y: -5, scale: 0.95 }}
+                initial={{ opacity: 0, y: 5, scale: 0.95 }}
+                key={`mobile-local-${isActive("/local")}`}
+                style={{ willChange: "transform" }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
               >
-                Wholesale
-              </Link>
-            </motion.div>
-            <motion.div
-              animate={{
-                scale: isActive("/local") ? 1.05 : 1,
-              }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
-              style={{ willChange: "transform" }}
-            >
-              <Link
-                aria-current={isActive("/local") ? "page" : undefined}
-                className={`rounded px-2 py-1 text-sm transition-colors duration-150 ${
-                  isActive("/local")
-                    ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
-                    : "font-medium text-white no-underline hover:text-luxury-gold"
-                }`}
-                href="/local"
-              >
-                Local
-              </Link>
-            </motion.div>
+                <Link
+                  aria-current={isActive("/local") ? "page" : undefined}
+                  className={`rounded px-2 py-1 text-sm transition-colors duration-150 ${
+                    isActive("/local")
+                      ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
+                      : "font-medium text-white no-underline hover:text-luxury-gold"
+                  }`}
+                  href="/local"
+                >
+                  Local
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+            <WholesaleButton variant="mobile" />
           </motion.div>
         </motion.div>
 
         {/* Desktop Layout */}
-        <motion.div 
-          className="hidden items-center justify-between md:flex"
-          animate={{
-            height: isScrolled ? "60px" : "80px"
-          }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
+        <div className="hidden items-center justify-between md:flex">
           {/* Logo Text */}
-          <Link
-            aria-label="Ozark Natural Steak Co. home page"
-            className="flex-shrink-0"
-            href="/"
-          >
-            <motion.h1 
-              className="border-luxury-gold border-b-2 font-bold text-white transition-colors hover:text-luxury-gold"
-              animate={{
-                fontSize: isScrolled ? "1.5rem" : "1.5rem"
-              }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <span className="text-white">Ozark</span>{" "}
-              <span className="text-white">Natural</span>{" "}
-              <span className="text-white">Steak Co.</span>
-            </motion.h1>
-          </Link>
-
-          {/* Navigation Menu */}
           <motion.div
-            aria-label="Desktop navigation menu"
-            className="flex items-center space-x-8"
-            role="list"
-            animate={{
-              opacity: isScrolled ? 0 : 1,
-              height: isScrolled ? 0 : "auto"
-            }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            style={{ overflow: "hidden" }}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           >
             <Link
-              aria-current={isActive("/our-ranch") ? "page" : undefined}
-              className={`cursor-pointer text-lg transition-all duration-300 hover:scale-110 px-2 py-1 ${
-                isActive("/our-ranch")
-                  ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
-                  : "font-medium text-white no-underline hover:text-luxury-gold"
-              }`}
-              href="/our-ranch"
+              aria-label="Ozark Natural Steak Co. home page"
+              className="flex-shrink-0"
+              href="/"
             >
-              Our Ranch
-            </Link>
-            <Link
-              aria-current={isActive("/recipes") ? "page" : undefined}
-              className={`cursor-pointer text-lg transition-all duration-300 hover:scale-110 px-2 py-1 ${
-                isActive("/recipes")
-                  ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
-                  : "font-medium text-white no-underline hover:text-luxury-gold"
-              }`}
-              href="/recipes"
-            >
-              Recipes
-            </Link>
-            <Link
-              aria-current={isActive("/wholesale") ? "page" : undefined}
-              className={`cursor-pointer text-lg transition-all duration-300 hover:scale-110 px-2 py-1 ${
-                isActive("/wholesale")
-                  ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
-                  : "font-medium text-white no-underline hover:text-luxury-gold"
-              }`}
-              href="/wholesale"
-            >
-              Wholesale
-            </Link>
-            <Link
-              aria-current={isActive("/local") ? "page" : undefined}
-              className={`cursor-pointer text-lg transition-all duration-300 hover:scale-110 px-2 py-1 ${
-                isActive("/local")
-                  ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
-                  : "font-medium text-white no-underline hover:text-luxury-gold"
-              }`}
-              href="/local"
-            >
-              Local
+              <h1 className="border-b-2 border-luxury-gold font-bold text-xl text-white transition-all duration-300 hover:scale-105 hover:text-luxury-gold">
+                <span className="text-white">Ozark</span>{" "}
+                <span className="text-white">Natural</span>{" "}
+                <span className="text-white">Steak Co.</span>
+              </h1>
             </Link>
           </motion.div>
 
+          {/* Navigation Menu */}
+          <motion.div
+            animate={{
+              opacity: isScrolled ? 0 : 1,
+              y: isScrolled ? -20 : 0,
+              height: isScrolled ? 0 : "auto",
+            }}
+            initial={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+            aria-label="Desktop navigation menu"
+            className="flex items-center space-x-8"
+            role="list"
+            style={{ overflow: "hidden" }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: -10 }}
+                key={`our-ranch-${isActive("/our-ranch")}`}
+                transition={{ duration: 0.2 }}
+              >
+                <Link
+                  aria-current={isActive("/our-ranch") ? "page" : undefined}
+                  className={`cursor-pointer px-2 py-1 text-sm transition-all duration-300 hover:scale-110 md:text-base lg:text-lg ${
+                    isActive("/our-ranch")
+                      ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
+                      : "font-medium text-white no-underline hover:text-luxury-gold"
+                  }`}
+                  href="/our-ranch"
+                >
+                  Our Ranch
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: -10 }}
+                key={`recipes-${isActive("/recipes")}`}
+                transition={{ duration: 0.2 }}
+              >
+                <Link
+                  aria-current={isActive("/recipes") ? "page" : undefined}
+                  className={`cursor-pointer px-2 py-1 text-sm transition-all duration-300 hover:scale-110 md:text-base lg:text-lg ${
+                    isActive("/recipes")
+                      ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
+                      : "font-medium text-white no-underline hover:text-luxury-gold"
+                  }`}
+                  href="/recipes"
+                >
+                  Recipes
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: -10 }}
+                key={`local-${isActive("/local")}`}
+                transition={{ duration: 0.2 }}
+              >
+                <Link
+                  aria-current={isActive("/local") ? "page" : undefined}
+                  className={`cursor-pointer px-2 py-1 text-sm transition-all duration-300 hover:scale-110 md:text-base lg:text-lg ${
+                    isActive("/local")
+                      ? "underline-luxury-gold font-bold text-luxury-gold underline decoration-2"
+                      : "font-medium text-white no-underline hover:text-luxury-gold"
+                  }`}
+                  href="/local"
+                >
+                  Local Partners
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+            <WholesaleButton variant="desktop" />
+          </motion.div>
+
           {/* Cart Button */}
-          <div className="flex items-center space-x-4">
+          <motion.div 
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+            className="flex items-center"
+          >
             <Dialog>
               <DialogTrigger asChild>
                 <Button
@@ -303,9 +336,9 @@ export function Navigation() {
                 </DialogHeader>
               </DialogContent>
             </Dialog>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }

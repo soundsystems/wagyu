@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { ContactWholesaleSection } from "@/components/wholesale/ContactWholesaleSection"
+import { ContactInquirySection } from "@/components/wholesale/ContactInquirySection"
 import { PartnershipProcessSection } from "@/components/wholesale/PartnershipProcessSection"
 import { WholesaleBenefitsSection } from "@/components/wholesale/WholesaleBenefitsSection"
 import { WholesaleHeroSection } from "@/components/wholesale/WholesaleHeroSection"
@@ -49,12 +49,13 @@ export default function WholesalePage() {
     <div className="min-h-screen bg-luxury-black text-white">
       <WholesaleHeroSection />
 
-      <div className="mx-auto max-w-[1440px] px-20">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-20">
         <WholesaleBenefitsSection />
         <PartnershipProcessSection />
-        <ContactWholesaleSection />
+        <div className="flex min-h-[80vh] items-center justify-center md:min-h-0 md:items-start">
+          <ContactInquirySection />
+        </div>
       </div>
     </div>
   )
 }
-

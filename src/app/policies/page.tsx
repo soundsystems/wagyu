@@ -33,7 +33,7 @@ export default function PoliciesPage() {
 
   return (
     <div className="min-h-screen bg-luxury-black text-white">
-      <div className="mx-auto max-w-4xl px-4 py-20 md:px-20">
+      <div className="mx-auto max-w-4xl px-20 py-20">
         <motion.div
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
@@ -47,19 +47,19 @@ export default function PoliciesPage() {
           </p>
         </motion.div>
 
-        <div className="space-y-8 md:space-y-12">
+        <div className="space-y-12">
           {policies.map((policy, index) => {
             const IconComponent = policy.icon
             return (
               <motion.div
-                className="rounded-2xl bg-luxury-charcoal/30 p-4 md:p-8"
+                className="rounded-2xl bg-luxury-charcoal/30 p-8"
                 initial={{ opacity: 0, y: 30 }}
                 key={policy.title}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileInView={{ opacity: 1, y: 0 }}
               >
-                <div className="flex flex-col items-start gap-4 md:flex-row md:gap-6">
+                <div className="flex items-start gap-6">
                   <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-luxury-gold/10">
                     <IconComponent className="h-8 w-8 text-luxury-gold" />
                   </div>
@@ -76,7 +76,7 @@ export default function PoliciesPage() {
         </div>
 
         <motion.div
-          className="mt-16 rounded-2xl bg-luxury-charcoal/50 p-4 text-center md:p-8"
+          className="mt-16 rounded-2xl bg-luxury-charcoal/50 p-8 text-center"
           initial={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
